@@ -1,4 +1,4 @@
-BeerHub is a Java based application created to help users explore the world of beer in a simple and engaging way.
+BeerHub is a Java Large Scale application created to help users explore the world of beer in a simple and engaging way.
 The platform collects and integrates real data about beers, breweries, reviews and user profiles, offering a unified environment where exploration and interaction come together naturally.
 Users can search for beers based on their personal preferences, read detailed profiles enriched with reviews, and follow breweries to stay connected with their favorite producers.
 BeerHub also allows users to share their own opinions, making the experience more collaborative and community-oriented.
