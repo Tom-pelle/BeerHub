@@ -5,4 +5,4 @@ BeerHub also allows users to share their own opinions, making the experience mor
 By observing user tastes and preferences, the application suggests beers, breweries and people who might match the user’s interests, making the discovery process easier and more personalized.
 
 The goal of BeerHub is to provide a clean and intuitive experience that combines browsing, social interaction and personalized discovery within a single application.
-The project integrates multiple data sources and leverages different NoSQL models to efficiently manage information and offer meaningful insights to the user.# LSMD
+The project integrates multiple data sources and leverages different NoSQL models to efficiently manage information and offer meaningful insights to the user.
