@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: BeerHub
+
+  mongodb:
+    uri: mongodb://marco:marco@100.71.188.41:27017/BeerHub?authSource=admin
