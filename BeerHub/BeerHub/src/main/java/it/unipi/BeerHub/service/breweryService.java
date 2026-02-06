@@ -70,6 +70,7 @@ public class breweryService {
 
     public Optional<Brewery> findById(String id){return breweryRepository.findById(id);}
 
+
     public Brewery getByName(String name) {
         Document doc = collection.find(eq("brewery_name", name)).first();
         if (doc == null) return null;
@@ -199,19 +200,15 @@ public class breweryService {
     }
 
     // Method to delete a brewery by its name
-    public Document deleteByBreweryName(String name) {
+    public Document deleteByBreweryId(String id) {
         // First, find the brewery to get its ID or confirm existence
-        Brewery b = getByName(name);
-        if (b == null) {
-            return null; // Brewery not found
-        }
 
         // Execute the deletion using the retrieved brewery_id
         Document result = new Document();
-        result.append("deletedCountDoc", collection.deleteOne(eq("brewery_id", b.getBrewery_id())).getDeletedCount());
+        result.append("deletedCountDoc", collection.deleteOne(eq("brewery_id", id)).getDeletedCount());
 
         Map<String, Object> param = new HashMap<>();
-        param.put("brewery_id", b.getBrewery_id());
+        param.put("brewery_id", id);
         String query =
                 "MATCH (br:Brewery {brewery_id: $brewery_id})\n" +
                 "DETACH DELETE br;";

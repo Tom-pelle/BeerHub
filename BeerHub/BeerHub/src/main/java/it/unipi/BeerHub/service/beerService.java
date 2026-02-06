@@ -197,31 +197,25 @@ public class beerService {
 
     /**
      *  Admin function to delete a beer document
-     * @param name
      * @return Status document
      */
-    public Document deleteByBeerName(String name) {
+    public Document deleteByBeerId(String beer_id) {
         // First, we find the beer to get its beer_id
-        Beer b = getByName(name);
         Document result = new Document();
-        if (b == null) {
-            result.append("beer", "not found");
-            return result; // Beer not found
-        }
 
         // Execute deletion based on the beer_id
-        DeleteResult docres = collection.deleteOne(eq("beer_id", b.getBeer_id()));
+        DeleteResult docres = collection.deleteOne(eq("beer_id", beer_id));
         result.append("docDelCount", docres.getDeletedCount());
 
         UpdateResult upres = collectionBr.updateOne(
-                Filters.eq("featuredBeers.beer_id", b.getBeer_id()),
+                Filters.eq("featuredBeers.beer_id", beer_id),
                 Updates.pull("featuredBeers",
-                        new Document("beer_id", b.getBeer_id())
+                        new Document("beer_id", beer_id)
                 )
         );
         result.append("updateDocBeer", upres.getModifiedCount());
         Map<String, Object> params = new HashMap<>();
-        params.put("beer_id", b.getBeer_id());
+        params.put("beer_id", beer_id);
         String query =
                 "MATCH (b:Beer {beer_id: $beer_id})\n" +
                         "DETACH DELETE b;";

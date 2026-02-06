@@ -70,9 +70,9 @@ public class BeerController {
     }
 
     // Admin only: Delete a beer by its name
-    @DeleteMapping("/admin/delete-by-name")
-    public Document deleteByBeerName(@RequestParam String name) {
-        Document delete = beerService.deleteByBeerName(name);
+    @DeleteMapping("/admin/delete-by-id")
+    public Document deleteByBeerId(@RequestParam String beer_id) {
+        Document delete = beerService.deleteByBeerId(beer_id);
 
         return delete;
     }

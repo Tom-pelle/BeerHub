@@ -130,12 +130,12 @@ public class UserController {
 
     @PostMapping("/post/follow")
     public ResponseEntity<String> followBrewery(
-            @RequestParam String breweryName,
+            @RequestParam String brewery_id,
             Authentication auth) {
         String username = auth.getName();
-        boolean followed = userService.followBrewery(username, breweryName);
+        boolean followed = userService.followBrewery(username, brewery_id);
         if (followed) {
-            return ResponseEntity.ok("Successfully followed brewery: " + breweryName);
+            return ResponseEntity.ok("Successfully followed brewery: " + brewery_id);
         } else {
             return ResponseEntity.badRequest().body("User or brewery not found");
         }
@@ -143,12 +143,12 @@ public class UserController {
 
     @DeleteMapping("/delete/unfollow")
     public ResponseEntity<String> unfollowBrewery(
-            @RequestParam String breweryName,
+            @RequestParam String brewery_id,
             Authentication auth) {
         String username = auth.getName();
-        boolean unfollowed = userService.unfollowBrewery(username, breweryName);
+        boolean unfollowed = userService.unfollowBrewery(username, brewery_id);
         if (unfollowed) {
-            return ResponseEntity.ok("Successfully unfollowed brewery: " + breweryName);
+            return ResponseEntity.ok("Successfully unfollowed brewery: " + brewery_id);
         } else {
             return ResponseEntity.badRequest().body("Follow relationship not found");
         }

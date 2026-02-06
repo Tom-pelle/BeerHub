@@ -52,22 +52,14 @@ public class BreweryController {
 
     // Add beer to the catalog by brewery NAME
     @PostMapping("/admin/add-beer-by-name")
-    public Document addBeerByBreweryName(@RequestParam String breweryName, @RequestBody Document beerData) {
-        // 1. We search for the brewery by name using the method already existing in the service
-        Brewery b = breweryService.getByName(breweryName);
-
-        if (b == null) {
-            return new Document().append("brewery ","not exists");
-        }
-
-        // 2. We use the retrieved id to add the beer
-        return breweryService.addBeerToBrewery(b.getBrewery_id(), beerData);
+    public Document addBeerByBreweryName(@RequestParam String brewery_id, @RequestBody Document beerData) {
+        return breweryService.addBeerToBrewery(brewery_id, beerData);
     }
 
     // Admin only: Delete a brewery using its name instead of ID
-    @DeleteMapping("/admin/delete-by-name")
-    public Document deleteByBreweryName(@RequestParam String name) {
-        return breweryService.deleteByBreweryName(name);
+    @DeleteMapping("/admin/delete-by-id")
+    public Document deleteByBreweryId(@RequestParam String id) {
+        return breweryService.deleteByBreweryId(id);
     }
 
     // Admin only: Create a new brewery

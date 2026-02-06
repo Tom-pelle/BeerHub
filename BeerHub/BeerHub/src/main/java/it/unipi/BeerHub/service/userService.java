@@ -166,13 +166,13 @@ public class userService {
         return result.getModifiedCount() > 0;
     }
 
-    public boolean followBrewery(String username, String breweryName) {
+    public boolean followBrewery(String username, String brewery_id) {
         Map<String, Object> params = new HashMap<>();
         params.put("username", username);
-        params.put("breweryName", breweryName);
+        params.put("brewery_id", brewery_id);
 
         String query =
-                "MATCH (u:User {username: $username}), (br:Brewery {name: $breweryName}) " +
+                "MATCH (u:User {username: $username}), (br:Brewery {brewery_id: $brewery_id}) " +
                         "MERGE (u)-[:FOLLOWS]->(br) " +
                         "RETURN true as success";
 
@@ -190,13 +190,13 @@ public class userService {
         return success;
     }
 
-    public boolean unfollowBrewery(String username, String breweryName) {
+    public boolean unfollowBrewery(String username, String brewery_id) {
         Map<String, Object> params = new HashMap<>();
         params.put("username", username);
-        params.put("breweryName", breweryName);
+        params.put("brewery_id", brewery_id);
 
         String query =
-                "MATCH (u:User {username: $username})-[r:FOLLOWS]->(br:Brewery {name: $breweryName}) " +
+                "MATCH (u:User {username: $username})-[r:FOLLOWS]->(br:Brewery {brewery_id: $brewery_id}) " +
                         "DELETE r " +
                         "RETURN true as success";
 
